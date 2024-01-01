@@ -17,13 +17,14 @@ const blazejGeoLoc = [50.280351623971306, 18.812031767035577];
 const jasiuGeoLoc = [50.280274215982075, 18.810959854777423];
 const bizonGeoLoc = [50.29295491255189, 18.784140779246588];
 const lukaszGeoLoc = [50.29937035161084, 18.84008917532767];
-const tomaszGeoLoc = [50.29956678006471, 18.83809869105105];
-const pawelGeoLoc = [50.330952497465326, 18.784776763501085];
-const kolusiaGeoLoc = [50.33736801443497, 18.769394356725957]
+const tomaszGeoLoc = [50.330952497465326, 18.784776763501085];
+const pawelGeoLoc = [50.29956678006471, 18.83809869105105];
 
-const locations = [bartoszGeoLoc,michalDomiGeoLoc,blazejGeoLoc,jasiuGeoLoc,bizonGeoLoc,lukaszGeoLoc,tomaszGeoLoc,pawelGeoLoc,kolusiaGeoLoc]
 
-locations.forEach((location)=>{
+const locations = [bartoszGeoLoc,michalDomiGeoLoc,blazejGeoLoc,jasiuGeoLoc,bizonGeoLoc,lukaszGeoLoc,tomaszGeoLoc,pawelGeoLoc,]
+
+
+locations.forEach((location,index)=>{
     
     let animatedIcon = L.icon({
       iconUrl: './giphy.gif',
@@ -32,12 +33,45 @@ locations.forEach((location)=>{
       popupAnchor: [0, -16] // Punkt, w którym pojawi się popup
   });
 
-  const marker = L.marker(location,{icon:animatedIcon}).addTo(map)
+const marker = L.marker(location,{icon:animatedIcon}).addTo(map);
+
+marker.bindPopup(`<img src="./img/${index + 1}.jpg" alt="Image">`, {
+  className: 'custom-popup'})
+
+
+ 
+ 
+
+// Nasłuchuj zdarzenia najechania na znacznik
+marker.on('mouseover', function () {
+  marker.openPopup(); // Otwórz pop-up po najechaniu
+  
+});
+
+// Nasłuchuj zdarzenia opuszczenia znacznika
+marker.on('mouseout', function () {
+  marker.closePopup(); // Zamknij pop-up po opuszczeniu
+});
+  
+  
+  
+  
+  
+  
+  
+  
+  
 })
 
 
 
- let polygon = L.polygon([michalDomiGeoLoc,pawelGeoLoc,tomaszGeoLoc,lukaszGeoLoc,blazejGeoLoc,jasiuGeoLoc,bartoszGeoLoc,bizonGeoLoc,kolusiaGeoLoc]).addTo(map)
+ let polygon = L.polygon([michalDomiGeoLoc,tomaszGeoLoc,pawelGeoLoc,lukaszGeoLoc,blazejGeoLoc,jasiuGeoLoc,bartoszGeoLoc,bizonGeoLoc]).addTo(map)
+
+
+//nav.addEventListener('mouseover',handleHover.bind(0.5
+//nav.addEventListener('mouseout',handleHover.bind(1));
+
+
 
 /*
 let bartoszMarker = L.marker(bartoszGeoLoc).addTo(map);
